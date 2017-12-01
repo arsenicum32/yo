@@ -1,3 +1,170 @@
-<script>
-window.location.href = 'http://penchat.me/yo/samples/basic/'
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="jquery.min.1.7.js"></script>
+<script type="text/javascript" src="modernizr.2.5.3.min.js"></script>
+</head>
+<body>
+
+<div class="flipbook-viewport">
+	<div class="container">
+		<div class="flipbook">
+			<div style="background-image:url(/pages/yo.jpg)"></div>
+			<div style="background-image:url(/pages/yo2.jpg)"></div>
+			<div style="background-image:url(/pages/yo3.jpg)"></div>
+			<div style="background-image:url(/pages/yo4.jpg)"></div>
+			<div style="background-image:url(/pages/yo5.jpg)"></div>
+			<div style="background-image:url(/pages/yo6.jpg)"></div>
+			<div style="background-image:url(/pages/yo7.jpg)"></div>
+			<div style="background-image:url(/pages/yo8.jpg)"></div>
+			<div style="background-image:url(/pages/yo9.jpg)"></div>
+			<div style="background-image:url(/pages/yo10.jpg)"></div>
+			<div style="background-image:url(/pages/yo11.jpg)"></div>
+			<div style="background-image:url(/pages/yo12.jpg)"></div>
+			<div style="background-image:url(/pages/yo13.jpg)"></div>
+			<div style="background-image:url(/pages/yo14.jpg)"></div>
+			<div style="background-image:url(/pages/yo15.jpg)"></div>
+			<div style="background-image:url(/pages/yo16.jpg)"></div>
+			<div style="background-image:url(/pages/yo17.jpg)"></div>
+			<div style="background-image:url(/pages/yo18.jpg)"></div>
+			<div style="background-image:url(/pages/yo19.jpg)"></div>
+			<div style="background-image:url(/pages/yo20.jpg)"></div>
+			<div style="background-image:url(/pages/yo21.jpg)"></div>
+			<div style="background-image:url(/pages/yo22.jpg)"></div>
+			<div style="background-image:url(/pages/yo23.jpg)"></div>
+			<div style="background-image:url(/pages/yo24.jpg)"></div>
+			<div style="background-image:url(/pages/yo25.jpg)"></div>
+			<div style="background-image:url(/pages/yo26.jpg)"></div>
+			<div style="background-image:url(/pages/yo27.jpg)"></div>
+			<div style="background-image:url(/pages/yo28.jpg)"></div>
+			<div style="background-image:url(/pages/yo29.jpg)"></div>
+			<div style="background-image:url(/pages/yo30.jpg)"></div>
+			<div style="background-image:url(/pages/yo31.jpg)"></div>
+			<div style="background-image:url(/pages/yo32.jpg)"></div>
+			<div style="background-image:url(/pages/yo31.jpg)"></div>
+<div style="background-image:url(/pages/yo32.jpg)"></div>
+<div style="background-image:url(/pages/yo33.jpg)"></div>
+<div style="background-image:url(/pages/yo34.jpg)"></div>
+<div style="background-image:url(/pages/yo35.jpg)"></div>
+<div style="background-image:url(/pages/yo36.jpg)"></div>
+<div style="background-image:url(/pages/yo37.jpg)"></div>
+<div style="background-image:url(/pages/yo38.jpg)"></div>
+<div style="background-image:url(/pages/yo39.jpg)"></div>
+<div style="background-image:url(/pages/yo40.jpg)"></div>
+<div style="background-image:url(/pages/yo41.jpg)"></div>
+<div style="background-image:url(/pages/yo42.jpg)"></div>
+<div style="background-image:url(/pages/yo43.jpg)"></div>
+<div style="background-image:url(/pages/yo44.jpg)"></div>
+<div style="background-image:url(/pages/yo45.jpg)"></div>
+<div style="background-image:url(/pages/yo46.jpg)"></div>
+<div style="background-image:url(/pages/yo47.jpg)"></div>
+<div style="background-image:url(/pages/yo48.jpg)"></div>
+<div style="background-image:url(/pages/yo49.jpg)"></div>
+<div style="background-image:url(/pages/yo50.jpg)"></div>
+<div style="background-image:url(/pages/yo51.jpg)"></div>
+<div style="background-image:url(/pages/yo52.jpg)"></div>
+		</div>
+	</div>
+</div>
+
+<div class="flip-control">
+    <a href="#" id="prev"> Previous </a>
+    <a href="#" id="next"> Next </a>
+</div>
+
+<div id='percent'>first page</div>
+
+
+<script type="text/javascript">
+
+function loadApp() {
+
+	// Create the flipbook
+
+	var size = window.innerWidth *.8 // 595
+
+	var oTurn = $('.flipbook').turn({
+			// Width
+
+			width: size*2 /2,
+
+			// Height
+
+			height: size /2,
+
+			// Elevation
+
+			elevation: 50,
+
+			// Enable gradients
+
+			gradients: true,
+
+			// Auto center this flipbook
+
+			autoCenter:  true
+	});
+
+	oTurn.bind("turned", function(event, page, pageObject) {
+		$('#percent').html(
+			page  + ' of ' + oTurn.turn("data").totalPages
+		)
+	})
+	.bind("last", function(event) {
+		prompt("Email me this book!");
+	})
+
+	$(window).on('resize', function(){
+		oTurn.turn("resize")
+	})
+
+
+	$('body').on('keypress', function(e){
+
+		switch (e.keyCode) {
+			case 97:
+				oTurn.turn("previous");
+				break;
+				case 102:
+          oTurn.turn("next");
+					break;
+					case 32:
+						oTurn.turn("next");
+						break;
+		}
+
+	})
+
+
+	$("#prev").click(function(e){
+    e.preventDefault();
+    oTurn.turn("previous");
+	});
+
+	$("#next").click(function(e){
+	    e.preventDefault();
+	    oTurn.turn("next");
+	});
+
+
+}
+
+// Load the HTML4 version if there's not CSS transform
+
+yepnope({
+	test : Modernizr.csstransforms,
+	yep: ['/lib/turn.js'],
+	nope: ['/lib/turn.html4.min.js'],
+	both: ['css/basic.css'],
+	complete: loadApp
+});
+
 </script>
+
+</body>
+</html>
