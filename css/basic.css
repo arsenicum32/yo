@@ -77,10 +77,10 @@ body{
 .flip-control {
 	position: absolute;
 	bottom: 120px;
-	right: 20px;
-	width: 85px;
-
-	/*justify-content: space-between;*/
+	right: 40px;
+	width: 60px;
+	display: flex;
+	justify-content: space-between;
 }
 .flip-control a{
 	text-decoration: none;
