@@ -13,74 +13,51 @@
 
 <div class="flipbook-viewport">
 	<div class="container">
-		<div class="flipbook">
-			<div style="background-image:url(/pages/yo.jpg)"></div>
-			<div style="background-image:url(/pages/yo2.jpg)"></div>
-			<div style="background-image:url(/pages/yo3.jpg)"></div>
-			<div style="background-image:url(/pages/yo4.jpg)"></div>
-			<div style="background-image:url(/pages/yo5.jpg)"></div>
-			<div style="background-image:url(/pages/yo6.jpg)"></div>
-			<div style="background-image:url(/pages/yo7.jpg)"></div>
-			<div style="background-image:url(/pages/yo8.jpg)"></div>
-			<div style="background-image:url(/pages/yo9.jpg)"></div>
-			<div style="background-image:url(/pages/yo10.jpg)"></div>
-			<div style="background-image:url(/pages/yo11.jpg)"></div>
-			<div style="background-image:url(/pages/yo12.jpg)"></div>
-			<div style="background-image:url(/pages/yo13.jpg)"></div>
-			<div style="background-image:url(/pages/yo14.jpg)"></div>
-			<div style="background-image:url(/pages/yo15.jpg)"></div>
-			<div style="background-image:url(/pages/yo16.jpg)"></div>
-			<div style="background-image:url(/pages/yo17.jpg)"></div>
-			<div style="background-image:url(/pages/yo18.jpg)"></div>
-			<div style="background-image:url(/pages/yo19.jpg)"></div>
-			<div style="background-image:url(/pages/yo20.jpg)"></div>
-			<div style="background-image:url(/pages/yo21.jpg)"></div>
-			<div style="background-image:url(/pages/yo22.jpg)"></div>
-			<div style="background-image:url(/pages/yo23.jpg)"></div>
-			<div style="background-image:url(/pages/yo24.jpg)"></div>
-			<div style="background-image:url(/pages/yo25.jpg)"></div>
-			<div style="background-image:url(/pages/yo26.jpg)"></div>
-			<div style="background-image:url(/pages/yo27.jpg)"></div>
-			<div style="background-image:url(/pages/yo28.jpg)"></div>
-			<div style="background-image:url(/pages/yo29.jpg)"></div>
-			<div style="background-image:url(/pages/yo30.jpg)"></div>
-			<div style="background-image:url(/pages/yo31.jpg)"></div>
-			<div style="background-image:url(/pages/yo32.jpg)"></div>
-			<div style="background-image:url(/pages/yo31.jpg)"></div>
-<div style="background-image:url(/pages/yo32.jpg)"></div>
-<div style="background-image:url(/pages/yo33.jpg)"></div>
-<div style="background-image:url(/pages/yo34.jpg)"></div>
-<div style="background-image:url(/pages/yo35.jpg)"></div>
-<div style="background-image:url(/pages/yo36.jpg)"></div>
-<div style="background-image:url(/pages/yo37.jpg)"></div>
-<div style="background-image:url(/pages/yo38.jpg)"></div>
-<div style="background-image:url(/pages/yo39.jpg)"></div>
-<div style="background-image:url(/pages/yo40.jpg)"></div>
-<div style="background-image:url(/pages/yo41.jpg)"></div>
-<div style="background-image:url(/pages/yo42.jpg)"></div>
-<div style="background-image:url(/pages/yo43.jpg)"></div>
-<div style="background-image:url(/pages/yo44.jpg)"></div>
-<div style="background-image:url(/pages/yo45.jpg)"></div>
-<div style="background-image:url(/pages/yo46.jpg)"></div>
-<div style="background-image:url(/pages/yo47.jpg)"></div>
-<div style="background-image:url(/pages/yo48.jpg)"></div>
-<div style="background-image:url(/pages/yo49.jpg)"></div>
-<div style="background-image:url(/pages/yo50.jpg)"></div>
-<div style="background-image:url(/pages/yo51.jpg)"></div>
-<div style="background-image:url(/pages/yo52.jpg)"></div>
+		<div class="flipbook" id="flipbook" >
 		</div>
 	</div>
 </div>
 
 <div class="flip-control">
-    <a href="#" id="prev"> Previous </a>
-    <a href="#" id="next"> Next </a>
+    <a href="#" id="prev"> ⟵ </a>
+    <a href="#" id="next"> ⟶ </a>
 </div>
 
 <div id='percent'>first page</div>
 
 
 <script type="text/javascript">
+
+
+$.urlParam = function (name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)')
+                      .exec(window.location.href);
+
+    return results  ? results[1] : undefined;
+}
+
+var bookname = $.urlParam('book') || 'gameoflight'; //'pages';
+
+function s(i){
+		if(i>99){
+			return i;
+		}
+		if(i>9){
+			return '0'+i;
+		}else{
+			return '00'+i;
+		}
+}
+
+for(var i=1;i< 101; i++){
+
+	var it = i == 0 ? '': i;
+
+	it = bookname + '-' + s(i);
+
+	$('#flipbook').append(`<div style="background-image:url(/${bookname}/${it}.jpg)" />`)
+}
+
 
 function loadApp() {
 
@@ -91,11 +68,11 @@ function loadApp() {
 	var oTurn = $('.flipbook').turn({
 			// Width
 
-			width: size*2 /2,
+			width:  1654 / 2,  //size*2 /2,
 
 			// Height
 
-			height: size /2,
+			height: 2339 / 4 ,//size /2,
 
 			// Elevation
 
@@ -115,9 +92,9 @@ function loadApp() {
 			page  + ' of ' + oTurn.turn("data").totalPages
 		)
 	})
-	.bind("last", function(event) {
-		prompt("Email me this book!");
-	})
+	// .bind("last", function(event) {
+	// 	prompt("Email me this book!");
+	// })
 
 	$(window).on('resize', function(){
 		oTurn.turn("resize")
