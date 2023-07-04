@@ -1,8 +1,22 @@
-var PDFImage = require("pdf-image").PDFImage;
-var fs = require('fs');
+const { fromPath } = require('pdf2pic');
 
-var pdfImage = new PDFImage("gameoflight.pdf");
-pdfImage.convertPage(0).then(function (imagePath) {
-  // 0-th page (first page) of the slide.pdf is available as slide-0.png
-  fs.existsSync("./slide-0.png") // => true
+const pdfPath = './poetryoncloth.pdf'; // Replace with the actual path to your PDF file
+const savePath = './poetryoncloth'; // Replace with the desired output folder path
+
+const options = {
+  density: 100,
+  saveFilename: "poetryoncloth",
+  savePath,
+  format: "jpg",
+  width: 600,
+  height: 600
+}
+
+const storeAsImage = fromPath(pdfPath, options);
+const pageToConvertAsImage = 1;
+
+storeAsImage(pageToConvertAsImage).then((resolve) => {
+  console.log("Page 1 is now converted as image");
+
+  return resolve;
 });

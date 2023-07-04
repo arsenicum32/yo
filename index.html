@@ -30,6 +30,51 @@
 
 <script type="text/javascript">
 
+function preloadImages(imageUrls, callback) {
+  var loadedImages = 0;
+  var totalImages = imageUrls.length;
+
+  // Create an array to store the preloaded images
+  var images = [];
+
+  // Function to call when each image is loaded
+  function imageLoaded() {
+    loadedImages++;
+
+    // Check if all images have been loaded
+    if (loadedImages === totalImages) {
+      // All images have been loaded
+      callback(images);
+    }
+  }
+
+  // Loop through the image URLs and preload each image
+  for (var i = 0; i < totalImages; i++) {
+    var image = new Image();
+    image.onload = imageLoaded;
+    image.src = imageUrls[i];
+    images.push(image);
+  }
+}
+
+var bookConfigs = {
+	gameoflight: {
+		width:  1654 / 2,  //size*2 /2,
+		height: 2339 / 4 ,//size /2,
+	},
+	installations: {
+		width:  1654 / 2,  //size*2 /2,
+		height: 2339 / 4 ,//size /2,
+	},
+	yo: {
+		width: 595*2 * 0.8,
+		height: 595 * 0.8,
+	},
+	poetryoncloth: {
+		width: 1418 * 0.6,
+		height: 1733 / 2 * 0.6,
+	}
+}
 
 $.urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)')
@@ -39,6 +84,11 @@ $.urlParam = function (name) {
 }
 
 var bookname = $.urlParam('book') || 'gameoflight'; //'pages';
+
+// preloadImages(
+// 	Array.from({ length: 100 }, (_, i) => `/${bookname}/${bookname}-${(i + 1).toString().padStart(3, '0')}.jpg` ),
+// 	images =>  console.log('Images preloaded:', images )
+// )
 
 function s(i){
 		if(i>99){
@@ -68,15 +118,7 @@ function loadApp() {
 	var size = window.innerWidth *.8 // 595
 
 	var oTurn = $('.flipbook').turn({
-			// Width
-
-			width:  1654 / 2,  //size*2 /2,
-
-			// Height
-
-			height: 2339 / 4 ,//size /2,
-
-			// Elevation
+			...bookConfigs[bookname],
 
 			elevation: 50,
 

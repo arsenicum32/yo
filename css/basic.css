@@ -1,8 +1,17 @@
 /* Basic sample */
 
-body{
-	overflow:hidden;
-	font-family: Din Pro;
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./GT-Pressura-Mono-Light.woff') format('woff');
+	src: url('./GT-Pressura-Mono-Light.woff2') format('woff2');
+  /* You can add additional font formats for browser compatibility */
+  /* src: url('path/to/font.woff2') format('woff2'),
+     url('path/to/font.ttf') format('truetype'); */
+}
+
+/* Use the custom font in your CSS styles */
+body {
+  font-family: 'CustomFont', Arial, sans-serif;
 	margin:0;
 	padding:0;
 }
@@ -21,15 +30,15 @@ body{
 }
 
 .flipbook-viewport .flipbook{
-	width:922px;
-	height:600px;
+	/* width:922px; */
+	/* height:600px; */
 	left:-461px;
 	top:-300px;
 }
 
 .flipbook-viewport .page{
-	width:461px;
-	height:600px;
+	/* width:200%; */
+	/* height:600px; */
 	background-color:white;
 	background-repeat:no-repeat;
 	background-size:100% 100%;
@@ -71,20 +80,19 @@ body{
 	right: 20px;
 	top: 20px;
 	padding: 20px;
-	border: 2px solid black;
 }
 
 .flip-control {
-	position: absolute;
+	position: fixed;
 	bottom: 120px;
-	right: 40px;
-	width: 60px;
-	display: flex;
-	justify-content: space-between;
+	right: 24px;
+	display: grid;
+	grid-gap: 24px;
+	grid-template-columns: auto auto;
 }
 .flip-control a{
 	text-decoration: none;
+	display: block;
 	color: black;
 	font-size: 2.3em;
-	/*border-bottom: 2px solid black;*/
 }
